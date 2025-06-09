@@ -25,7 +25,9 @@ INSTALLED_APPS = [
     "django.contrib.sites",
 ]
 
-USER_APPS = []
+USER_APPS = [
+    "userdata",
+]
 
 LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
 

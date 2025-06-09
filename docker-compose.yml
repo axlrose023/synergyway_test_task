@@ -13,7 +13,7 @@ services:
     restart: on-failure
     profiles: [ "default" ]
     env_file:
-      - .env
+      - .env.local.sample
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     healthcheck:
@@ -34,7 +34,7 @@ services:
     restart: on-failure
     profiles: [ "default" ]
     env_file:
-      - .env
+      - .env.local.sample
     healthcheck:
       test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
       interval: 5s
@@ -51,7 +51,7 @@ services:
     environment:
       - CELERY_BROKER_URL=redis://default:default@${REDIS_HOST}:${REDIS_PORT}/0
     env_file:
-      - .env
+      - .env.local.sample
     ports:
       - 5555:5555
     depends_on:
@@ -73,7 +73,7 @@ services:
     ports:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
     env_file:
-      - .env
+      - .env.local.sample
     depends_on:
       db:
         condition: service_healthy
@@ -89,7 +89,7 @@ services:
       - back_static:/usr/src/app/allstaticfiles
       - back_media:/usr/src/app/media
     env_file:
-      - .env
+      - .env.local.sample
     depends_on:
       db:
         condition: service_healthy
@@ -107,7 +107,7 @@ services:
       - back_static:/usr/src/app/allstaticfiles
       - back_media:/usr/src/app/media
     env_file:
-      - .env
+      - .env.local.sample
     depends_on:
       db:
         condition: service_healthy
