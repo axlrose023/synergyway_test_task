@@ -21,7 +21,7 @@ from fastapi_pagination import add_pagination
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "website.settings")
 django.setup()
 
-#from user.routers import api_router as user_api_router
+from userdata.routers import userdata_router
 
 
 def get_application() -> FastAPI:
@@ -34,7 +34,7 @@ def get_application() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
-    #app.include_router(user_api_router)
+    app.include_router(userdata_router)
     app.mount("/django" if settings.DEBUG else "/", get_asgi_application())
     app.mount("/media", StaticFiles(directory="media"), name="media")
 

@@ -17,3 +17,18 @@ CELERY_QUEUES = (
     Queue("default"),
     Queue("priority_high"),
 )
+
+CELERY_BEAT_SCHEDULE = {
+    "fetch-users-every-hour": {
+        "task": "users.fetch_and_upsert",
+        "schedule": 60.0,
+    },
+    "fill-addresses-every-6-hours": {
+        "task": "users.fill_addresses",
+        "schedule": 120.0,
+    },
+    "fill-credit-cards-every-6-hours": {
+        "task": "users.fill_credit_cards",
+        "schedule": 120.0,
+    },
+}
