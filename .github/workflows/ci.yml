@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup .env.local.sample file
-        run: cp .env.local.sample .env.local.sample
+        run: cp .env.local.sample .env
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
